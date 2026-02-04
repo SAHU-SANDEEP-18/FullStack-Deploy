@@ -7,7 +7,7 @@ const App = () => {
   const [editDescription, setEditDescription] = useState("");
 
   function fetchNotes() {
-    axios.get("https://fullstack-deploy-foyq.onrender.com/").then((res) => {
+    axios.get("https://fullstack-deploy-foyq.onrender.com/api/notes").then((res) => {
       setNote(res.data.notes);
     });
   }
@@ -20,7 +20,7 @@ const App = () => {
     e.preventDefault();
     const { title, description } = e.target.elements;
 
-    axios.post("https://fullstack-deploy-foyq.onrender.com/", {
+    axios.post("https://fullstack-deploy-foyq.onrender.com/api/notes", {
       title: title.value,
       description: description.value,
     }).then(() => {
@@ -30,14 +30,14 @@ const App = () => {
   }
 
   function handleDeleteNote(id) {
-    axios.delete("https://fullstack-deploy-foyq.onrender.com/" + id).then(() => {
+    axios.delete("https://fullstack-deploy-foyq.onrender.com/api/notes" + id).then(() => {
       fetchNotes();
     });
   }
 
   function handleUpdateNote(id) {
     axios
-      .patch(`https://fullstack-deploy-foyq.onrender.com/${id}`, {
+      .patch(`https://fullstack-deploy-foyq.onrender.com/api/notes/${id}`, {
         description: editDescription,
       })
       .then(() => {
