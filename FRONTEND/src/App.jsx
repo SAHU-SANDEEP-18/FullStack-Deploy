@@ -30,7 +30,7 @@ const App = () => {
   }
 
   function handleDeleteNote(id) {
-    axios.delete("https://fullstack-deploy-foyq.onrender.com/api/notes" + id).then(() => {
+    axios.delete("https://fullstack-deploy-foyq.onrender.com/api/notes/" + id).then(() => {
       fetchNotes();
     });
   }
